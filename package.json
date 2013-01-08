@@ -1,0 +1,24 @@
+{
+  "name": "pres",
+  "version": "0.0.1",
+  "author": "Philipp Hagemeister <phihag@phihag.de>",
+  "description": "Various presentations (and code to show them)",
+  "scripts": {
+    "start": "node ./pres-server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phihag/pres.git"
+  },
+  "dependencies" : {
+    "argparse":  "0.1.x",
+    "mustache": "*",
+    "open": "*",
+    "osxh": "*",
+    "underscore": "*"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "*"
+  }
+}
