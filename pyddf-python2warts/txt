@@ -1,0 +1,18 @@
+TODO: funny images (like Wat?)
+
+Quirks of Python 2
+(or why you should switch to Python 3)
+
+len('Düssel') (answer depends, normally 7, sometimes 6, alternative: len('Корсак') / len('Суха'))
+'Düssel'.encode()
+backticks+old octal: len(`7`), len(`007`), len(`008`)
+len(`10**1`), len(`10**2`), len(`10**5`), len(`10**42`)
+type(dict())  class X: pass  type(X())
+print 4, ; sys.stdout.write(''); print 2  (removing sys.stdout.write adds a space)
+1/2*2
+what does this do: o = lambda d: os.fdopen(d,'w')   print >>o(4>>2), 4>>2
+len(u'😃') == 2 (Windows, <=3.2)
+warts of Python 3.0-3.2: range(1,2) == range(1,2)
+
+input?
+super (Charlie's JSONEncoder, classic classes)
