@@ -15,7 +15,9 @@
     "mustache": "*",
     "open": "*",
     "osxh": "*",
-    "underscore": "*"
+    "underscore": "*",
+    "fs-watch-tree": "*",
+    "websocket": "*"
   },
   "license": "MIT",
   "engines": {

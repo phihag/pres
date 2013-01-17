@@ -4,8 +4,8 @@ Quirks of Python 2
 (or why you should switch to Python 3)
 
 len('Düssel') (answer depends, normally 7, sometimes 6, alternative: len('Корсак') / len('Суха'))
-'Düssel'.encode()
-backticks+old octal: len(`7`), len(`007`), len(`008`)
+len('Düssel'.encode())
+backticks+old octal: print `007`, print `008`
 len(`10**1`), len(`10**2`), len(`10**5`), len(`10**42`)
 type(dict())  class X: pass  type(X())
 print 4, ; sys.stdout.write(''); print 2  (removing sys.stdout.write adds a space)
