@@ -1,0 +1,43 @@
+Python 2 Quirks
+(or why you should switch to Python 3)
+Philipp Hagemeister, <a href="mailto:phihag@phihag.de">phihag@phihag.de</a>
+(Heinrich-Heine Universität Düsseldorf)
+
+=====
+Of strange rivers ...
+
+<code class="codeblock">
+<span class="deemphasized">Python 2.7.3 (default, Sep  9 2012, 17:41:34) 
+[GCC 4.7.1] on linux2
+Type "help", "copyright", "credits" or "license" for more information.</span>
+<span class="deemphasized">&lt;&lt;&lt;&nbsp;</span>len('Rhein')
+<span class="emphasized" step="2-">5</span>
+<span step="3-"><span class="deemphasized">&lt;&lt;&lt;&nbsp;</span>len('Düssel')</span></span>
+<span step="4-">7 <span class="deemphasized"># sometimes 6</span></span>
+<span step="5-"><span class="deemphasized">&lt;&lt;&lt;&nbsp;</span>len('Düssel'.encode())</span></span>
+<span step="6-">Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 1: ordinal not in range(128)</span>
+</code>
+
+=====
+More stuff
+
+
+
+TODO: funny images (like Wat?)
+
+Quirks of Python 2
+
+
+backticks+old octal: print `007`, print `008`
+len(`10**1`), len(`10**2`), len(`10**5`), len(`10**42`)
+type(dict())  class X: pass  type(X())
+print 4, ; sys.stdout.write(''); print 2  (removing sys.stdout.write adds a space)
+1/2*2
+what does this do: o = lambda d: os.fdopen(d,'w')   print >>o(4>>2), 4>>2
+len(u'😃') == 2 (Windows, &lt;=3.2)
+warts of Python 3.0-3.2: range(1,2) == range(1,2)
+
+input?
+super (Charlie's JSONEncoder, classic classes)

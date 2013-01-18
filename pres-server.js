@@ -96,6 +96,9 @@ function handleRequest(req, res) {
         case '.js':
             mimeType = 'application/javascript';
             break;
+        case '.css':
+            mimeType = 'text/css';
+            break;
         }
         return _serveStatic(fn, mimeType, res);
     } else {   
@@ -166,7 +169,7 @@ function main() {
             }
         });
     });
-    watchTree(ROOT_DIR, function (e) {
+    watchTree(ROOT_DIR, { exclude: [".git", "node_modules"] }, function (e) {
         reloadWatchers.forEach(function(conn) {
             conn.sendUTF('reload');
         });
