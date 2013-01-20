@@ -12,7 +12,7 @@ html,body {
 	width: 100%; height: 100%;
 }
 .slide_hidden {
-	display: none;
+	display: none !important;
 }
 
 .firstslide {
@@ -22,4 +22,8 @@ html,body {
 .firstslide h1 {
 	font-size: 300%;
 	margin: 0 auto 0.5em auto;
+}
+.firstslide h2 {
+	font-size: 150%;
+	margin: 0 auto 0.3em auto;
 }

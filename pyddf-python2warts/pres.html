@@ -1,7 +1,7 @@
 Python 2 Quirks
-(or why you should switch to Python 3)
-Philipp Hagemeister, <a href="mailto:phihag@phihag.de">phihag@phihag.de</a>
-(Heinrich-Heine Universität Düsseldorf)
+<h2>(or why you should switch to Python 3)</h2>
+<h2>Philipp Hagemeister, <a href="mailto:phihag@phihag.de">phihag@phihag.de</a></h2>
+<h2>Heinrich-Heine Universität Düsseldorf</h2>
 
 =====
 Of strange rivers ...
@@ -10,13 +10,13 @@ Of strange rivers ...
 <span class="deemphasized">Python 2.7.3 (default, Sep  9 2012, 17:41:34) 
 [GCC 4.7.1] on linux2
 Type "help", "copyright", "credits" or "license" for more information.</span>
-<span class="deemphasized">&lt;&lt;&lt;&nbsp;</span>len('Rhein')
+<span class="deemphasized">&lt;&lt;&lt; </span>len('Rhein')
 <span class="emphasized" step="2-">5</span>
-<span step="3-"><span class="deemphasized">&lt;&lt;&lt;&nbsp;</span>len('Düssel')</span></span>
+<span step="3-"><span class="deemphasized">&lt;&lt;&lt; </span>len('Düssel')</span>
 <span step="4-">7 <span class="deemphasized"># sometimes 6</span></span>
-<span step="5-"><span class="deemphasized">&lt;&lt;&lt;&nbsp;</span>len('Düssel'.encode())</span></span>
+<span step="5-"><span class="deemphasized">&lt;&lt;&lt; </span>len('Düssel'.encode())</span>
 <span step="6-">Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
 UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 1: ordinal not in range(128)</span>
 </code>
 
