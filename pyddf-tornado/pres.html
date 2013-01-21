@@ -1,0 +1,89 @@
+Tornado
+<h2>Eventbasierte Programmierung in Python</h2>
+<h2>Philipp Hagemeister, <a href="mailto:phihag@phihag.de">phihag@phihag.de</a></h2>
+<h2>Heinrich-Heine Universität Düsseldorf</h2>
+
+=====
+Unsere Problemstellung
+
+* Peer-To-Peer-Anwendungen
+* Normale Herangehensweise: Viele Threads/Prozesse
+* Problem: Schwierig zu debuggen
+* Außerdem großer Overhead pro Verbindung
+* Probleme bei sehr vielen gleichzeitigen Verbindungen (Thread-Anzahl)
+
+=======
+Demo-Programm
+
+<code class="osxh_codeblock">import socket
+
+def httpserv(conn):
+    buf = b''
+    while b'\r\n\r\n' not in buf:
+        buf += conn.recv(1024)
+    conn.send(b'HTTP/1.0 200 OK\r\n\r\nThank you.')
+    conn.close()
+
+def handleConn(conn):
+    httpserv(conn)
+
+s = socket.socket()
+s.bind(('', 8000))
+s.listen(1)
+while True:
+    conn,addr = s.accept()
+    handleConn(conn)
+</code>
+
+=====
+Threading
+
+<ul>
+	<li>Das Demo-Programm kann nur eine Verbindung gleichzeitig halten!</li>
+	<li step="1-">Also: Threading:
+<code class="osxh_codeblock">def handleConn(conn):
+    threading.Thread(target=conn, args=(conn,)).start()</code>
+	</li>
+	<li step="2-">Problem: Bei nur 10000 gleichzeitigen Threads: 80GB(!) Adressraum belegt</li>
+	<li step="3-">Problem: Außerdem 100MB RAM (=100KB/Thread)</li>
+	<li step="4-">Thread-Pool hilft nicht weiter</li>
+</ul>
+
+=====
+Tornado
+
+<ul>
+	<li>Nur noch ein Thread</li>
+	<li>Der ruft <code>select</code>(o.ä.) über alle Sockets auf</li>
+	<li>Speicherverbrauch geringer</li>
+	<li>Keine Nebenläufigkeit ⇨ einfach zu debuggen</li>
+	<li>Aber: Nicht-blockender Socket-Code erforderlich</li>
+</ul>
+
+=====
+Demo-Server mit Tornado
+
+<code class="osxh_codeblock">
+from tornado import iostream
+def httpserv(ios):
+    def _on_read():
+	    ios.write(b'HTTP/1.0 200 OK\r\n\r\nThank you.')
+	    ios.close()
+    ios.read_until(b'\r\n\r\n', _on_read)
+
+def handleConn(conn):
+    httpserv(ios.IOStream(conn))
+
+# Außerdem anderes accept
+</code>
+
+=====
+Tornado
+
+<ul>
+<li>Eventbasiertes Programmieren</li>
+<li>Nur eine von vielen Lösungen</li>
+<li>Aber sehr übersichtlich und modular</li>
+<li>Gut für parallele Anwendungen</li>
+<li data-step="1-">Fragen?</li>
+</ul>
