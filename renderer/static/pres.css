@@ -1,12 +1,12 @@
 @font-face {
-    font-family: 'DroidSansMonoRegular';
-    src: url('/static/fonts/DroidSansMono.eot');
-    src: url('/static/fonts/DroidSansMono.eot?#iefix') format('embedded-opentype'),
-         url('/static/fonts/DroidSansMono.woff') format('woff'),
-         url('/static/fonts/DroidSansMono.ttf') format('truetype'),
-         url('/static/fonts/DroidSansMono.svg#DroidSansMonoRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'DroidSansMonoRegular';
+	src: url('/static/fonts/DroidSansMono.eot');
+	src: url('/static/fonts/DroidSansMono.eot?#iefix') format('embedded-opentype'),
+		 url('/static/fonts/DroidSansMono.woff') format('woff'),
+		 url('/static/fonts/DroidSansMono.ttf') format('truetype'),
+		 url('/static/fonts/DroidSansMono.svg#DroidSansMonoRegular') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
 
 
@@ -27,7 +27,9 @@ html,body {
 .slide_hidden {
 	display: none !important;
 }
-
+.step_hidden {
+	display: none !important;
+}
 
 .firstslide {
 	display: table-cell; vertical-align: middle;
@@ -63,4 +65,19 @@ html,body {
 }
 .osxh_deemphasized {
 	color: #555;
+}
+figure {
+	display: inline-block;
+	text-align: center;
+}
+figcaption {
+	text-align: inline;
+}
+figure img {
+	max-width: 80%;
+	max-height: 80%;
+}
+figcaption.osxh_attribution {
+	font-size: 50%;
+	color: #666;
 }

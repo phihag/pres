@@ -14,7 +14,7 @@
     "argparse":  "0.1.x",
     "mustache": "*",
     "open": "*",
-    "osxh": ">=0.1.1",
+    "osxh": ">=0.1.2",
     "underscore": "*",
     "fs-watch-tree": "*",
     "websocket": "*"

@@ -57,7 +57,14 @@ function _getPresentation(name, onResult) {
     });
 }
 
-function _serveStatic(fn, mimeType, res) {
+function _serveStatic(fn, res) {
+    var mimeM = fn.match(/\.([^.]+)?$/);
+    var mimeType = undefined;
+    if (mimeM) {
+        if (mimeM[1] in _MIME_TYPES) {
+            mimeType = _MIME_TYPES[mimeM[1]];
+        }
+    }
     fs.readFile(fn, 'binary', function (err, content) {
         if (err) {
             _writeError(404, 'static file not found', res);
@@ -105,16 +112,9 @@ function handleRequest(req, res) {
         return;
     } else if (m = uri.match(/\/static\/([a-zA-Z0-9*_\.\/-]+)$/)) {
         var fn = path.join(ROOT_DIR, 'renderer', 'static', m[1]);
-        var mimeM = m[1].match(/\.([^.]+)?$/);
-        var mimeType = undefined;
-        if (mimeM) {
-            if (mimeM[1] in _MIME_TYPES) {
-                mimeType = _MIME_TYPES[mimeM[1]];
-            }
-        }
-        return _serveStatic(fn, mimeType, res);
+        return _serveStatic(fn, res);
     } else {
-        m = uri.match(/\/([a-z0-9-]+)\/([a-z]*)$/);
+        m = uri.match(/\/([a-z0-9-]+)\/([a-zA-Z0-9.]*)$/);
         if (m && _isPresentation(m[1])) {
             var presId = m[1];
             var action = m[2];
@@ -132,8 +132,8 @@ function handleRequest(req, res) {
                 if (action == '') {
                     _renderTemplate('pres', {id: presId, data:presentationData}, res);
                 } else {
-                    _writeError(404, 'Unknown presentation action', res);
-                    return;
+                    var fn = path.join(ROOT_DIR, presId, action);
+                    return _serveStatic(fn, res);
                 }
             });
             return;
