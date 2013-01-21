@@ -74,6 +74,10 @@ function pres(presId, presData) {
 				stepCount = Math.max(stepCount, parseInt(m[1])+1);
 			});
 			slideContainer.setAttribute('data-step-count', stepCount);
+			var snField = document.createElement('div');
+			snField.setAttribute('class', 'slidenum');
+			snField.appendChild(document.createTextNode(slideNum));
+			slideContainer.appendChild(snField);
 			return slideContainer;
 		});
 		slideContainers.forEach(function(sc) {
@@ -175,7 +179,6 @@ function pres(presId, presData) {
 if (document.compatMode != 'CSS1Compat') {
 	alert("Not in standards mode, something went wrong ...");
 }
-
 
 $(function() {
 	var presId = $('body').attr('data-pres-id');

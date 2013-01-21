@@ -90,3 +90,9 @@ figcaption.osxh_attribution {
 	list-style-type: disc;
 	margin: 0.6em auto;
 }
+.slidenum {
+	position: absolute;
+	right: 0.7em; bottom: 0.5em;
+	color: #555;
+	z-index: -1;
+}
