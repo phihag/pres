@@ -59,7 +59,6 @@ function pres(presId, presData) {
 				slideContainer.setAttribute('class', cls + ' firstslide')
 			}
 			osxhi.renderInto(slide, slideContainer);
-			slideNum++;
 			var stepCount = 1;
 			var stepEls = slideContainer.querySelectorAll('[data-step]');
 			_lst(stepEls).forEach(function(se) {
@@ -74,10 +73,13 @@ function pres(presId, presData) {
 				stepCount = Math.max(stepCount, parseInt(m[1])+1);
 			});
 			slideContainer.setAttribute('data-step-count', stepCount);
+
 			var snField = document.createElement('div');
 			snField.setAttribute('class', 'slidenum');
 			snField.appendChild(document.createTextNode(slideNum));
 			slideContainer.appendChild(snField);
+
+			slideNum++;
 			return slideContainer;
 		});
 		slideContainers.forEach(function(sc) {

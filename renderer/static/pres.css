@@ -96,3 +96,6 @@ figcaption.osxh_attribution {
 	color: #555;
 	z-index: -1;
 }
+.firstslide .slidenum {
+	display: none;
+}
