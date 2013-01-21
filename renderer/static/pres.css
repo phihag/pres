@@ -1,3 +1,16 @@
+@font-face {
+    font-family: 'DroidSansMonoRegular';
+    src: url('/static/fonts/DroidSansMono.eot');
+    src: url('/static/fonts/DroidSansMono.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/DroidSansMono.woff') format('woff'),
+         url('/static/fonts/DroidSansMono.ttf') format('truetype'),
+         url('/static/fonts/DroidSansMono.svg#DroidSansMonoRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
 html,body {
 	font-family: sans-serif;
 	font-size: 20pt;
@@ -15,6 +28,7 @@ html,body {
 	display: none !important;
 }
 
+
 .firstslide {
 	display: table-cell; vertical-align: middle;
 	text-align: center;
@@ -26,4 +40,27 @@ html,body {
 .firstslide h2 {
 	font-size: 150%;
 	margin: 0 auto 0.3em auto;
+}
+
+.slide>* {
+	margin-left: 0.8em;
+}
+.slide h1 {
+	font-size: 180%;
+	padding: 0.2em 0 0.5em 0;
+}
+
+.slide>span,.slide>code {
+	padding-left: 1em;
+}
+.osxh_codeblock {
+	font-family: DroidSansMonoRegular,sans-serif;
+	line-height: 1.18;
+	letter-spacing: -0.05em;
+	display: block;
+	white-space: pre;
+	width: auto;
+}
+.osxh_deemphasized {
+	color: #555;
 }

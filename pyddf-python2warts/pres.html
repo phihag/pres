@@ -6,19 +6,17 @@ Python 2 Quirks
 =====
 Of strange rivers ...
 
-<code class="codeblock">
-<span class="deemphasized">Python 2.7.3 (default, Sep  9 2012, 17:41:34) 
-[GCC 4.7.1] on linux2
-Type "help", "copyright", "credits" or "license" for more information.</span>
-<span class="deemphasized">&lt;&lt;&lt; </span>len('Rhein')
-<span class="emphasized" step="2-">5</span>
-<span step="3-"><span class="deemphasized">&lt;&lt;&lt; </span>len('Düssel')</span>
-<span step="4-">7 <span class="deemphasized"># sometimes 6</span></span>
-<span step="5-"><span class="deemphasized">&lt;&lt;&lt; </span>len('Düssel'.encode())</span>
-<span step="6-">Traceback (most recent call last):
+<code class="osxh_codeblock"><span class="osxh_deemphasized">Python 2.7.3 (default, Sep  9 2012, 17:41:34) 
+[GCC 4.7.1] on linux2</span>
+<span class="osxh_deemphasized">&lt;&lt;&lt; </span>len('Rhein')
+<span class="osxh_emphasized" data-step="2-">5</span>
+<span data-step="3-"><span class="osxh_deemphasized">&lt;&lt;&lt; </span>len('Düssel')</span>
+<span data-step="4-">7 <span class="osxh_deemphasized"># sometimes 6</span></span>
+<span data-step="5-"><span class="osxh_deemphasized">&lt;&lt;&lt; </span>len('Düssel'.encode())</span>
+<span data-step="6-">Traceback (most recent call last):
   File "&lt;stdin&gt;", line 1, in &lt;module&gt;
-UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 1: ordinal not in range(128)</span>
-</code>
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3
+in position 1: ordinal not in range(128)</span></code>
 
 =====
 More stuff

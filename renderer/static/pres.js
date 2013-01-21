@@ -16,10 +16,13 @@ var _KEYS = {
 
 function pres(presId, presData) {
 	var container = document.getElementById('pres_container');
-	var osxhi = osxh({allowCSS: true});
+	var osxhi = osxh({allowCSS: true, attributes: {
+		"data-step": {"tagName": "^.*$", "value": "^"},
+	}});
 
 	var title,slides;
 	var curSlide = 0;
+	var curStep = 0;
 	var slideContainers;
 
 	var slideHTML = function (slideCode) {
@@ -53,9 +56,18 @@ function pres(presId, presData) {
 		curSlide = newSlideNum;
 		$(slideContainers[newSlideNum]).removeClass('slide_hidden');
 	};
-	var goToSlide = function(newSlideNum) {
+	var setStep = function(stepNum) {
+		
+	};
+	var goToSlide = function(newSlideNum, stepNum) {
+		if (!stepNum) {
+			stepNum = 0;
+		}
 		newSlideNum = Math.min(slides.length-1, Math.max(0, newSlideNum));
-		location.hash = '#s' + newSlideNum;
+		location.hash = '#s' + newSlideNum + (stepNum ? '-' + stepNum : '');
+	};
+	var advance = function(incr) {
+		// TODO support steps
 	};
 	var parseLoc = function() {
 		var h = window.location.hash;
@@ -81,12 +93,12 @@ function pres(presId, presData) {
 	case _KEYS.PGDOWN:
 	case _KEYS.RIGHT:
 	case _KEYS.SPACE:
-		goToSlide(curSlide+1);
+		advance(1);
 		e.preventDefault();
 		break;
 	case _KEYS.PGUP:
 	case _KEYS.LEFT:
-		goToSlide(curSlide-1);
+		advance(-1);
 		e.preventDefault();
 		break;
 	}

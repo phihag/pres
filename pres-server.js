@@ -13,6 +13,22 @@ var watchTree = require("fs-watch-tree").watchTree;
 
 var ROOT_DIR = __dirname;
 
+var _MIME_TYPES = {
+    js: 'application/javascript',
+    css: 'text/css',
+
+    jpg: 'image/jpeg',
+    jpeg: 'image/jpeg',
+    svg: 'image/svg+xml',
+    png: 'image/png',
+
+    eot: 'application/vnd.ms-fontobject',
+    otf: 'application/x-font-opentype',
+    ttf: 'application/x-font-ttf',
+    woff: 'application/x-font-woff'
+};
+
+
 function _isPresentation(f) {
     return ((f.indexOf('.') < 0) &&
         (['node_modules', 'renderer', 'TODO'].indexOf(f) < 0));
@@ -87,21 +103,17 @@ function handleRequest(req, res) {
             _renderTemplate('root', {presentations:presentations}, res);
         });
         return;
-    } else if (m = uri.match(/\/static\/([a-z0-9*_\.-]+)$/)) {
+    } else if (m = uri.match(/\/static\/([a-zA-Z0-9*_\.\/-]+)$/)) {
         var fn = path.join(ROOT_DIR, 'renderer', 'static', m[1]);
-        var mimeM = m[1].match(/(\.[^.]+)?$/);
-        var mimeType = '';
-
-        switch (mimeM ? mimeM[1] : undefined) {
-        case '.js':
-            mimeType = 'application/javascript';
-            break;
-        case '.css':
-            mimeType = 'text/css';
-            break;
+        var mimeM = m[1].match(/\.([^.]+)?$/);
+        var mimeType = undefined;
+        if (mimeM) {
+            if (mimeM[1] in _MIME_TYPES) {
+                mimeType = _MIME_TYPES[mimeM[1]];
+            }
         }
         return _serveStatic(fn, mimeType, res);
-    } else {   
+    } else {
         m = uri.match(/\/([a-z0-9-]+)\/([a-z]*)$/);
         if (m && _isPresentation(m[1])) {
             var presId = m[1];
