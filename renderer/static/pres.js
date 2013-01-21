@@ -39,13 +39,23 @@ function pres(presId, presData) {
 	var curContainer = null;
 
 	var slideHTML = function (slideCode) {
-		var res = slideCode;
-		res = res.replace(/^.*$/m, function(match) {
-			return match ? '<h1>' + match + '</h1>' : '<h1>&#160;</h1>'
-		});
-		res = res.replace('&nbsp;', '&#160;');
-		res = res.trim();
-		res = '<osxh>' + res + '</osxh>';
+		var title, content;
+		var eolp = slideCode.indexOf("\n");
+		if (eolp == -1) {
+			title = eolp;
+			content = '';
+		} else {
+			title = slideCode.substring(0, eolp);
+			content = slideCode.substring(eolp+1);
+		}
+
+		title = title ? '<h1>' + title + '</h1>' : '<h1>&#160;</h1>';
+		content = content.trim();
+		if (content.match(/^(?:[*] .+(?:\n|$))+/)) {
+			content = content.replace(/^[*] (.+)$/mg, '<li>$1</li>');
+			content = '<ul>' + content + '</ul>';
+		}
+		var res = '<osxh>' + title + content + '</osxh>';
 		return res;
 	};
 
