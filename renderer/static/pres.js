@@ -41,7 +41,6 @@ function pres(presId, presData) {
 	var slideHTML = function (slideCode) {
 		var res = slideCode;
 		res = res.replace(/^.*$/m, function(match) {
-			console.log(match);
 			return match ? '<h1>' + match + '</h1>' : '<h1>&#160;</h1>'
 		});
 		res = res.replace('&nbsp;', '&#160;');
@@ -140,7 +139,6 @@ function pres(presId, presData) {
 
 	title = presData.split('\n')[0].trim();
 	var slideCode = presData.split(/\n={3,}\n/);
-	console.log(slideCode);
 	slides = slideCode.map(slideHTML);
 
 	// Create DOM objects

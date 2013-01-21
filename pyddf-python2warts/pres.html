@@ -1,25 +1,25 @@
 Python 2 Quirks
-<h2>(or why you should switch to Python 3)</h2>
+<h2>(oder warum man Python 3 einsetzen sollte)</h2>
 <h2>Philipp Hagemeister, <a href="mailto:phihag@phihag.de">phihag@phihag.de</a></h2>
 <h2>Heinrich-Heine Universität Düsseldorf</h2>
 
 =====
-Strange rivers ...
+Neulich, in einer Python-Shell ...
 
 <code class="osxh_codeblock"><span class="osxh_deemphasized">Python 2.7.3 (default, Sep  9 2012, 17:41:34) 
 [GCC 4.7.1] on linux2</span>
-<span class="osxh_deemphasized">&lt;&lt;&lt; </span>len('Rhein')
+<span class="osxh_deemphasized">&gt;&gt;&gt; </span>len('Rhein')
 <span class="osxh_emphasized" data-step="1-">5</span>
-<span data-step="2-"><span class="osxh_deemphasized">&lt;&lt;&lt; </span>len('Düssel')</span>
+<span data-step="2-"><span class="osxh_deemphasized">&gt;&gt;&gt; </span>len('Düssel')</span>
 <span data-step="3-">7 <span class="osxh_deemphasized"># sometimes 6</span></span>
-<span data-step="4-"><span class="osxh_deemphasized">&lt;&lt;&lt; </span>len('Düssel'.encode())</span>
+<span data-step="4-"><span class="osxh_deemphasized">&gt;&gt;&gt; </span>len('Düssel'.encode())</span>
 <span data-step="5-">Traceback (most recent call last):
   File "&lt;stdin&gt;", line 1, in &lt;module&gt;
 UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3
 in position 1: ordinal not in range(128)</span></code>
 
 =====
-Huh?
+Häh?
 
 <figure>
 <img src="img1.jpg" alt="HUH?" />
@@ -27,21 +27,129 @@ Huh?
 </figure>
 
 ======
-Secret agents ...
+Neulich, in einer Python-Shell ...
 
-TODO: funny images (like Wat?)
+<code class="osxh_codeblock"><span class="osxh_deemphasized">Python 2.7.3 (default, Sep  9 2012, 17:41:34) 
+[GCC 4.7.1] on linux2</span>
+<span class="osxh_deemphasized">&gt;&gt;&gt; </span>print 007
+<span data-step="1-" class="osxh_emphasized">7</span>
+<span data-step="2-"><span class="osxh_deemphasized">&gt;&gt;&gt; </span>print `007`</span>
+<span data-step="3-" class="osxh_emphasized">7</span>
+</code>
 
-Quirks of Python 2
+========
+Mmm...
 
+<figure>
+<img src="img2.jpg" alt="Mmm..." />
+<figcaption class="osxh_attribution">http://www.flickr.com/photos/ben_pollard/2342924889/</figcaption>
+</figure>
 
-backticks+old octal: print `007`, print `008`
-len(`10**1`), len(`10**2`), len(`10**5`), len(`10**42`)
-type(dict())  class X: pass  type(X())
-print 4, ; sys.stdout.write(''); print 2  (removing sys.stdout.write adds a space)
-1/2*2
-what does this do: o = lambda d: os.fdopen(d,'w')   print >>o(4>>2), 4>>2
-len(u'😃') == 2 (Windows, &lt;=3.2)
-warts of Python 3.0-3.2: range(1,2) == range(1,2)
+======
+Neulich, in einer Python-Shell ...
 
+<code class="osxh_codeblock"><span class="osxh_deemphasized">Python 2.7.3 (default, Sep  9 2012, 17:41:34) 
+[GCC 4.7.1] on linux2</span>
+<span class="osxh_deemphasized">&gt;&gt;&gt; </span>len(`10**1`)
+<span data-step="1-" class="osxh_emphasized">2</span>
+<span data-step="2-"><span class="osxh_deemphasized">&gt;&gt;&gt; </span>len(`10**2`)</span>
+<span data-step="3-" class="osxh_emphasized">3</span>
+<span data-step="4-"><span class="osxh_deemphasized">&gt;&gt;&gt; </span>len(`10**5`)</span>
+<span data-step="5-" class="osxh_emphasized">6</span>
+<span data-step="6-"><span class="osxh_deemphasized">&gt;&gt;&gt; </span>len(`10**42`)</span>
+<span data-step="7-" class="osxh_emphasized">44</span>
+</code>
+
+========
+Häh?
+
+<figure>
+<img src="img3.jpg" alt="Häh?" />
+<figcaption class="osxh_attribution">http://www.flickr.com/photos/doug88888/3843456676/</figcaption>
+</figure>
+
+========
+Neulich, in einer Python-Shell ...
+
+<code class="osxh_codeblock"><span class="osxh_deemphasized">Python 2.7.3 (default, Sep  9 2012, 17:41:34) 
+[GCC 4.7.1] on linux2</span>
+<span class="osxh_deemphasized">&gt;&gt;&gt; </span>type(dict())
+<span data-step="1-" class="osxh_emphasized">&lt;type 'dict'&gt;</span>
+<span data-step="2-"><span class="osxh_deemphasized">&gt;&gt;&gt; </span>type(int())</span>
+<span data-step="3-" class="osxh_emphasized">&lt;type 'int'&gt;</span>
+<span data-step="4-"><span class="osxh_deemphasized">&gt;&gt;&gt; </span>import cookielib</span>
+<span data-step="4-"><span class="osxh_deemphasized">&gt;&gt;&gt; </span>type(cookielib.CookieJar())</span>
+<span data-step="5-" class="osxh_emphasized">&lt;type 'instance'&gt;</span>
+</code>
+
+======
+Häh?
+
+<figure>
+<img src="img4.jpg" alt="Häh?" />
+<figcaption class="osxh_attribution">http://www.flickr.com/photos/nickstone333/3135318558/</figcaption>
+</figure>
+
+=====
+Neulich, in einer Python-Shell ...
+
+<code class="osxh_codeblock"><span class="osxh_deemphasized">Python 2.7.3 (default, Sep  9 2012, 17:41:34) 
+[GCC 4.7.1] on linux2</span>
+<span class="osxh_deemphasized">&gt;&gt;&gt; </span>import sys
+<span class="osxh_deemphasized">&gt;&gt;&gt; </span>print 4, ; sys.stdout.write('') ; print 2
+<span data-step="1-" class="osxh_emphasized">42</span>
+<span data-step="2-"><span class="osxh_deemphasized">&gt;&gt;&gt; </span>print 4, ; sys.stderr.write('') ; print 2</span>
+<span data-step="3-" class="osxh_emphasized">4 2</span>
+</code>
+
+======
+Häh?
+
+<figure>
+<img src="img5.jpg" alt="Häh?" />
+<figcaption class="osxh_attribution">http://www.flickr.com/photos/johnsalvador/5991797632/</figcaption>
+</figure>
+
+=====
+Neulich, in einer Python 3-Shell ...
+
+<code class="osxh_codeblock"><span class="osxh_deemphasized">Python 3.2.3 (default, Apr 11 2012, 07:12:16)
+[MSC v.1500 64 bit (AMD64)] on </span><span class="osxh_emphasized">win32</span>
+<span class="osxh_deemphasized">&gt;&gt;&gt; </span>len('✈')
+<span data-step="1-" class="osxh_emphasized">1</span>
+<span data-step="2-"><span class="osxh_deemphasized">&gt;&gt;&gt; </span>len('😃')</span>
+<span data-step="3-" class="osxh_emphasized">2</span>
+<span data-step="4-"><span class="osxh_deemphasized">&gt;&gt;&gt; </span>range(1,2) == range(1,2)</span>
+<span data-step="5-" class="osxh_emphasized">True</span>
+</code>
+
+======
+Häh?
+
+<figure>
+<img src="img6.jpg" alt="Häh?" />
+<figcaption class="osxh_attribution">http://www.flickr.com/photos/wooleyduck/979581049</figcaption>
+</figure>
+
+=====
+Morgen, in Deiner Python-Shell
+
+<ul>
+	<li>Die Demo-Programme waren alle künstlich</li>
+	<li>... aber das heisst nicht, das ihr nicht drüber stolpern könnt!</li>
+	<li>Alle Probleme korrigiert in python 3.3</li>
+</ul>
+
+=====
+The End
+
+<figure>
+<img src="img7.jpg" alt="Funny Meerkat" />
+<figcaption class="osxh_attribution">http://www.flickr.com/photos/tambako/5675839637</figcaption>
+</figure>
+
+<!--
 input?
 super (Charlie's JSONEncoder, classic classes)
+1/2*2
+-->
