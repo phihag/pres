@@ -81,3 +81,12 @@ figcaption.osxh_attribution {
 	font-size: 50%;
 	color: #666;
 }
+.slide>ul {
+	margin-top: 1em;
+	margin-left: 4em;
+}
+.slide>ul>li {
+	font-size: 120%;
+	list-style-type: disc;
+	margin: 0.6em auto;
+}
