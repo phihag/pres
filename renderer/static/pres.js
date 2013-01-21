@@ -136,7 +136,10 @@ function pres(presId, presData) {
 		}
 		while (newStep >= parseInt(slideContainers[newSlide].getAttribute('data-step-count'))) {
 			newStep -= parseInt(slideContainers[newSlide].getAttribute('data-step-count'));
-			newSlide = restrictSlideNum(newSlide+1);
+			var newNewSlide = restrictSlideNum(newSlide+1);
+			if (newNewSlide == newSlide) { // We're at the end
+				newStep = parseInt(slideContainers[newSlide].getAttribute('data-step-count'))-1;
+			}
 		}
 		goToSlide(newSlide, newStep);
 	};
