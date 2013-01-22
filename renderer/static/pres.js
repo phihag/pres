@@ -139,6 +139,8 @@ function pres(presId, presData) {
 			var newNewSlide = restrictSlideNum(newSlide+1);
 			if (newNewSlide == newSlide) { // We're at the end
 				newStep = parseInt(slideContainers[newSlide].getAttribute('data-step-count'))-1;
+			} else {
+				newSlide = newNewSlide;
 			}
 		}
 		goToSlide(newSlide, newStep);
