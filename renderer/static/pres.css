@@ -56,7 +56,6 @@ html,body {
 	padding-left: 1em;
 }
 .osxh_codeblock {
-	font-family: DroidSansMonoRegular,sans-serif;
 	line-height: 1.18;
 	letter-spacing: -0.05em;
 	display: block;
@@ -101,5 +100,10 @@ figcaption.osxh_attribution {
 }
 
 code {
-	font-family: monospace;
+	font-family: DroidSansMonoRegular,monospace;
+}
+.osxh_closing_title {
+	font-size: 190%;
+	text-align: center;
+	margin: 30px 0 20px 0;
 }
