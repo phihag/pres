@@ -99,3 +99,7 @@ figcaption.osxh_attribution {
 .firstslide .slidenum {
 	display: none;
 }
+
+code {
+	font-family: monospace;
+}
