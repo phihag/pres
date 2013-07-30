@@ -149,6 +149,7 @@ function main() {
     });
     parser.addArgument(['-l', '--launch-webbrowser'], {help: 'Launch a webbrowser that shows the presentation', action: 'storeTrue'});
     parser.addArgument(['-p', '--port'], {help: 'Port to use', defaultValue: 0});
+    parser.addArgument(['-P', '--public-serv'], {help: 'Make this webserver available to the world', action: 'storeTrue'});
     var args = parser.parseArgs();
 
     var server = http.createServer(handleRequest);
