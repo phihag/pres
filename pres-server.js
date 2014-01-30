@@ -29,7 +29,7 @@ var _MIME_TYPES = {
 };
 
 
-function _isPresentation(f) {
+function _isValidName(f) {
     return ((f.indexOf('.') < 0) &&
         (['node_modules', 'renderer', 'TODO'].indexOf(f) < 0));
 }
@@ -41,7 +41,7 @@ function _listPresentations(onResult) {
             return;
         }
 
-        var presentations = _.filter(files, _isPresentation);
+        var presentations = _.filter(files, _isValidName);
         onResult(null, presentations);
     });
 }
@@ -114,12 +114,19 @@ function handleRequest(req, res) {
         var fn = path.join(ROOT_DIR, 'renderer', 'static', m[1]);
         return _serveStatic(fn, res);
     } else {
-        m = uri.match(/\/([a-z0-9-]+)\/([a-zA-Z0-9.]*)$/);
-        if (m && _isPresentation(m[1])) {
-            var presId = m[1];
-            var action = m[2];
+        m = uri.match(/\/((?:[a-z0-9-]+\/)*)([a-z0-9-]+)\/([a-zA-Z0-9.]*)$/);
+        if (m && _isValidName(m[1])) {
+            var folderId = m[1];
+            // TODO Add support for folders here
+            /*if (folderId) {
+                if (_.all())
+            }*/
+            console.log("presentation ID: " + m[2] + ", action: " + m[3]);
+            var presId = m[2];
+            var action = m[3];
             _getPresentation(presId, function(err, presentationData) {
                 if (err) {
+                    console.log(err);
                     if (err.code == 'ENOENT') {
                         _writeError(404, 'Unknown presentation', res);
                         return;
