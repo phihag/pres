@@ -2,6 +2,7 @@ ipaddress
 <h2>Rechnen mit IP-Adressen</h2>
 <h2>Philipp Hagemeister, <a href="mailto:phihag@phihag.de">phihag@phihag.de</a></h2>
 <h2>Heinrich-Heine Universität Düsseldorf</h2>
+<h2>Lehrstuhl für Rechnernetze</h2>
 
 =====
 ipaddress
@@ -9,10 +10,14 @@ ipaddress
 <ul>
 <li>Rechnen mit IP-Addressen und -Netzwerken</li>
 <li>Anwendungszwecke: Firewall-Konfiguration, Logging etc.</li>
-<li data-step="2-">... und Lösen von Übungsaufgaben</li>
-<li data-step="3-">Vormals ipaddr (von google)</li>
-<li data-step="3-">In der stdlib seit Python 3.3</li>
+<li data-step="1-">... und Lösen von Übungsaufgaben</li>
+<li data-step="2-">Vormals ipaddr (von google)</li>
+<li data-step="2-">In der stdlib seit Python 3.3</li>
 <li data-step="3-">Als Paket für Python 2.6 und 2.7, <code>pip install ipaddress</code></li>
+<li data-step="3-">
+	Achtung: ipaddress kann sowohl mit Bytes als auch Unicode umgehen;
+	genaue Unterscheidung nötig!
+</li>
 </ul>
 
 =====
@@ -22,7 +27,7 @@ import ipaddress
 >>> import ipaddress
 >>> a = ipaddress.ip_address(u'127.0.0.1')
 >>> a
-IPv4Address('127.0.0.1')
+IPv4Address(u'127.0.0.1')
 <span data-step="1-">>>> a.version
 4 <span class="osxh_deemphasized">&#160;&#160;# IPv4</span>
 >>> int(a)
@@ -38,12 +43,12 @@ Ist das eine IP-Adresse?
 <code class="osxh_codeblock">
 >>> from ipaddress import ip_address
 >>> ip_address(u'0:0::00')
-<span data-step="1-">IPv6Address('::')</span>
+<span data-step="1-">IPv6Address(u'::')</span>
 <span data-step="2-">>>> ip_address(u'::1:2:3::4')</span>
 <span data-step="3-">ValueError: '::1:2:3::4' does not appear
             to be an IPv4 or IPv6 address</span>
 <span data-step="4-">>>> ip_address(u'::255.0.127.0')</span>
-<span data-step="5-">IPv6Address('::ff00:7f00')</span>
+<span data-step="5-">IPv6Address(u'::ff00:7f00')</span>
 
 </code>
 
@@ -82,13 +87,13 @@ Netzwerke
 >>> n = ipaddress.ip_network(u'1.2.18.0/23')
 >>> n.num_addresses
 512
-<span data-step="1-">>>> ip_address('1.2.19.39') in n
+<span data-step="1-">>>> ip_address(u'1.2.19.39') in n
 True</span>
 <span data-step="2-">>>> <span class="osxh_deemphasized"># Netzwerk aufsplitten</span>
 >>> sub = ipaddress.ip_network(u'1.2.18.0/25')
 >>> list(n.address_exclude(sub))
-[IPv4Network('1.2.19.0/24'),
- IPv4Network('1.2.18.128/25')]</span>
+[IPv4Network(u'1.2.19.0/24'),
+ IPv4Network(u'1.2.18.128/25')]</span>
 </code>
 
 ====
@@ -100,11 +105,11 @@ Fragen?
 >>> ip_address(2**64).exploded
 '0000:0000:0000:0001:0000:0000:0000:0000'
 >>> ip_address(u'1.2.3.4') + 1
-IPv4Address('1.2.3.5')
+IPv4Address(u'1.2.3.5')
 >>> n = ipaddress.ip_network(u'192.168.1.0/24')
 >>> list(n.hosts())[:2]
-[IPv4Address('192.168.1.1'),
- IPv4Address('192.168.1.2')]
+[IPv4Address(u'192.168.1.1'),
+ IPv4Address(u'192.168.1.2')]
 >>> n.broadcast_address
-IPv4Address('192.168.1.255')
+IPv4Address(u'192.168.1.255')
 </code>
