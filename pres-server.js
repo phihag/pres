@@ -138,6 +138,8 @@ function handleRequest(req, res) {
 
                 if (action == '') {
                     _renderTemplate('pres', {id: presId, data:presentationData}, res);
+                } else if (action == 'render_static') {
+                    console.log(presentationData);
                 } else {
                     var fn = path.join(ROOT_DIR, presId, action);
                     return _serveStatic(fn, res);
